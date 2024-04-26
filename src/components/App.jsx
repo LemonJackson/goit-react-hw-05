@@ -1,18 +1,21 @@
 import { Route, Routes } from "react-router-dom";
+import { lazy } from "react";
 
 import Layout from "./Layout/Layout";
-import HomePage from "../pages/HomePage";
-import MoviesPage from "../pages/MoviesPage";
-import MovieDetailsPage from "../pages/MovieDetailsPage";
-import MovieCast from "./MovieCast/MovieCast";
-import MovieReviews from "./MovieReviews/MovieReviews";
-import NotFoundPage from "../pages/NotFoundPage";
 
-import css from "./App.module.css";
+const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("../pages/MoviesPage/MoviesPage"));
+const MovieDetailsPage = lazy(() =>
+  import("../pages/MovieDatailsPage/MovieDetailsPage")
+);
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+
+const MovieCast = lazy(() => import("./MovieCast/MovieCast"));
+const MovieReviews = lazy(() => import("./MovieReviews/MovieReviews"));
 
 export default function App() {
   return (
-    <div className={css.app}>
+    <div>
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />

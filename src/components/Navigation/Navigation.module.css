@@ -1,33 +1,58 @@
-.link {
-  display: inline-flex;
-  padding: 8px;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: orangered;
-}
-
-.active {
-  background-color: teal;
-  color: #fff;
-}
-
 .navigation {
   top: 0;
   left: 0;
-  position: sticky;
+  right: 0;
+  position: fixed;
   z-index: 1;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 10px 50px 10px 20px;
   color: #fff;
-  background-color: #3f51b5;
+  background-color: rgb(51, 51, 51);
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  color: #dddddd;
+  background-color: #333333;
+}
+
+.text {
+  font-size: 24px;
+  font-weight: 700;
+  color: #dddddd;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.link {
+  color: #dddddd;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.active {
+  /* background-color: teal;
+  color: #fff; */
+  border-bottom: 3px solid #dddddd;
+  border-radius: 3px;
 }

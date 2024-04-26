@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { fetchReviews } from "../../unsplash-api";
+import { fetchReviews } from "../../movies-api";
+
+import css from "./MovieReviews.module.css";
 
 export default function MovieReviews() {
   const { movieId } = useParams();
@@ -20,17 +22,15 @@ export default function MovieReviews() {
   }, [movieId]);
 
   return (
-    <div>
-      <ul>
-        {reviews.map((item) => {
-          return (
-            <li key={item.id}>
-              <p>{item.author}</p>
-              <p>{item.content}</p>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className={css.list}>
+      {reviews.map((item) => {
+        return (
+          <li className={css.item} key={item.id}>
+            <h2 className={css.name}>{item.author}</h2>
+            <p className={css.text}>{item.content}</p>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

@@ -6,7 +6,7 @@ export default function MoviesList({ items }) {
     <ul className={css.list}>
       {items.map((item) => {
         return (
-          <li className={item} key={item.id + Date.now()}>
+          <li className={css.item} key={item.id + Date.now()}>
             <MovieCard item={item} />
           </li>
         );

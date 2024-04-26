@@ -1,21 +1,27 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
-import Loader from "../components/Loader/Loader";
-import MoviesList from "../components/MoviesList/MoviesList";
-import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn";
+import Loader from "../../components/Loader/Loader";
+import MoviesList from "../../components/MoviesList/MoviesList";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
+import Searchbar from "../../components/SearchBar/SearchBar";
 
-import { fetchMovies } from "../unsplash-api";
-import Searchbar from "../components/SearchBar/SearchBar";
+import { fetchMovies } from "../../movies-api";
+
+import css from "./MoviesPage.module.css";
 
 export default function MoviePage() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [showBtn, setShowBtn] = useState(true);
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
 
-  const handleSearch = (newQuery) => {
-    setQuery(newQuery);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("query");
+
+  const handleSearch = (value) => {
+    setSearchParams({ query: value });
     setPage(1);
     setMovies([]);
     setShowBtn(true);
@@ -26,13 +32,13 @@ export default function MoviePage() {
   };
 
   useEffect(() => {
-    if (query === "") {
+    if (searchQuery === "") {
       return;
     }
     async function getMovies() {
       try {
         setIsLoading(true);
-        const data = await fetchMovies(query, page);
+        const data = await fetchMovies(searchQuery, page);
         setMovies([...movies, ...data.results]);
         if (data.total_pages === page) {
           setShowBtn(false);
@@ -45,11 +51,10 @@ export default function MoviePage() {
     }
 
     getMovies();
-  }, [query, page]);
+  }, [searchQuery, page]);
 
   return (
-    <div>
-      <h1>Search Movie</h1>
+    <div className={css.page}>
       <Searchbar onSearch={handleSearch} />
 
       <MoviesList items={movies} />

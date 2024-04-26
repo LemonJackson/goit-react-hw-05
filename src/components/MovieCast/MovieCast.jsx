@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { fetchCast } from "../../unsplash-api";
+import { fetchCast } from "../../movies-api";
+
+import css from "./MovieCast.module.css";
 
 export default function MovieCast() {
   const { movieId } = useParams();
@@ -20,16 +22,17 @@ export default function MovieCast() {
   }, [movieId]);
 
   return (
-    <div>
-      <ul>
+    <div className={css.cast}>
+      <ul className={css.list}>
         {cast.map((item) => {
           return (
-            <li key={item.id}>
+            <li className={css.item} key={item.id}>
               <img
+                className={css.img}
                 src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
                 alt={item.character}
               />
-              <p>{item.name}</p>
+              <p className={css.name}>{item.name}</p>
             </li>
           );
         })}

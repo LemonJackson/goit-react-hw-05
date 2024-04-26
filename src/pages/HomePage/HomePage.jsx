@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 
-import Loader from "../components/Loader/Loader";
-import MoviesList from "../components/MoviesList/MoviesList";
-import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn";
+import Loader from "../../components/Loader/Loader";
+import MoviesList from "../../components/MoviesList/MoviesList";
+import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
 
-import { fetchTopMovies } from "../unsplash-api";
+import { fetchTopMovies } from "../../movies-api";
+
+import css from "./HomePage.module.css";
 
 export default function HomePage() {
   const [topMovies, setTopMovies] = useState([]);
@@ -36,8 +38,8 @@ export default function HomePage() {
   }, [page]);
 
   return (
-    <div>
-      <h1>Tranding Today</h1>
+    <div className={css.page}>
+      <h1 className={css.title}>Tranding Today</h1>
 
       <MoviesList items={topMovies} />
 
